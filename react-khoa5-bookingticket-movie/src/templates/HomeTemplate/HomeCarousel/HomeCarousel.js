@@ -1,36 +1,24 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Carousel } from 'antd';
 
-const contentStyle = {
-    height: '700px',
-    color: '#fff',
-    lineHeight: '160px',
-    textAlign: 'center',
-    background: '#364d79',
-};
-export default function HomeCarousel() {
+
+export default function HomeCarousel(props) {
+   
+    const { arrCarousel } = useSelector(state => state.CarouselReducer)
+    console.log(arrCarousel)
+
+    const renderCarousel = () => {
+        return arrCarousel.map((item, index) => {
+            return <div key ={index}>
+                <img src={item.hinhAnh} className="w-full" alt="123" />
+            </div>
+        })
+    }
+
     return (
         <Carousel effect="fade" autoplay="true">
-            <div>
-                <div style={contentStyle}>
-                    <img src="http://picsum.photos/1000" className="w-full" alt="123" />
-                </div>
-            </div>
-            <div>
-                <div style={contentStyle}>
-                    <img src="http://picsum.photos/1100" className="w-full" alt="123" />
-                </div>
-            </div>
-            <div>
-                <div style={contentStyle}>
-                    <img src="http://picsum.photos/1200" className="w-full" alt="123" />
-                </div>
-            </div>
-            <div>
-                <div style={contentStyle}>
-                    <img src="http://picsum.photos/1300" className="w-full" alt="123" />
-                </div>
-            </div>
+            {renderCarousel()}
         </Carousel>
     )
 }

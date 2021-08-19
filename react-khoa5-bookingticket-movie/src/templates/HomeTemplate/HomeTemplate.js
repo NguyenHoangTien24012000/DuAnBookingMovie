@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Route } from "react-router";
+import Footer from "./Footer/Footer";
 import HomeCarousel from "./HomeCarousel/HomeCarousel";
 import Header from "./Layout/Header/Header";
 
@@ -15,6 +16,7 @@ export const HomeTemplate = (props) => {
             <Header {...propsRoute}  />
             <HomeCarousel {...propsRoute}/>
             <Component {...propsRoute} />
+            <Footer/>
         </Fragment>
     }} />
 }

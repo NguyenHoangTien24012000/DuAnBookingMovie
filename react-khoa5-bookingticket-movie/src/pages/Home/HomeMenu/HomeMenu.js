@@ -9,7 +9,7 @@ export default function HomeMenu() {
     return (
         <>
 
-            <div class="container mx-auto mt-20">
+            <div className="container mx-auto mt-20">
                 <Tabs tabPosition="left">
                     <TabPane tab={<Avatar size="large" src="http://picsum.photos/24" />} key="1">
                         Content of Tab 1
