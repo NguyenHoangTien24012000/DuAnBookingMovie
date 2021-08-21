@@ -1,20 +1,22 @@
+import { GET_CAROUSEL } from "../types/CarouselType"
+
 const initialState = {
     arrCarousel : [
-        {
-            "maBanner": 1,
-            "maPhim": 1282,
-            "hinhAnh": "http://movieapi.cyberlearn.vn/hinhanh/ban-tay-diet-quy.png"
-        },
-        {
-            "maBanner": 2,
-            "maPhim": 1283,
-            "hinhAnh": "http://movieapi.cyberlearn.vn/hinhanh/lat-mat-48h.png"
-        },
-        {
-            "maBanner": 3,
-            "maPhim": 1284,
-            "hinhAnh": "http://movieapi.cyberlearn.vn/hinhanh/cuoc-chien-sinh-tu.png"
-        }
+        // {
+        //     "maBanner": 1,
+        //     "maPhim": 1282,
+        //     "hinhAnh": "http://movieapi.cyberlearn.vn/hinhanh/ban-tay-diet-quy.png"
+        // },
+        // {
+        //     "maBanner": 2,
+        //     "maPhim": 1283,
+        //     "hinhAnh": "http://movieapi.cyberlearn.vn/hinhanh/lat-mat-48h.png"
+        // },
+        // {
+        //     "maBanner": 3,
+        //     "maPhim": 1284,
+        //     "hinhAnh": "http://movieapi.cyberlearn.vn/hinhanh/cuoc-chien-sinh-tu.png"
+        // }
     ]
 }
 
@@ -22,7 +24,8 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-
+        case GET_CAROUSEL :
+            return {...state, arrCarousel : action.arrCarousel}
 
 
         default:
