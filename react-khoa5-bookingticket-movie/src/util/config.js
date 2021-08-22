@@ -5,3 +5,6 @@ export const DOMAIN = 'http://movieapi.cyberlearn.vn/api'
 
 
 export const ACCESS_TOKEN = 'ACCESS_TOKEN'
+
+
+export const GROUPID = 'GP00'
