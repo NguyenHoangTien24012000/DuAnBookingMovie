@@ -2,7 +2,7 @@ import Axios from "axios"
 import { quanLyPhimServices } from "../../services/QuanLyPhimServices"
 import { GET_DANH_SACH_PHIM } from "../types/QuanLyDanhSachPhimType";
 
-export const GetSanhSachPhimAction = () =>{
+export const getSanhSachPhimAction = () =>{
     return async (dispatch) =>{
         try {
             const result = await quanLyPhimServices.layDanhSachPhim();

@@ -13,9 +13,8 @@ export default (state = initialState, action) => {
         case GET_DANH_SACH_PHIM : {
             state.danhSachPhim = action.danhSachPhim
             state.danhSachPhimDangChieu = action.danhSachPhim.filter(item => item.dangChieu === true)
-            state.danhSachPhimSapChieu = action.danhSachPhim.filter(item => item.sapChieu = true).slice(30)
-            console.log(state.danhSachPhimDangChieu)
-            console.log(state.danhSachPhimSapChieu)
+            state.danhSachPhimSapChieu = action.danhSachPhim.filter(item => item.sapChieu = true).slice(11)
+            
             return {...state}
         }
 

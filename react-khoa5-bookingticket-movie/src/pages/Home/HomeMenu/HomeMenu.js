@@ -1,27 +1,38 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Tabs } from 'antd';
 import { Avatar } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import CumRapPhim from './CumRapPhim';
+
 
 const { TabPane } = Tabs;
 
-export default function HomeMenu() {
+function HomeMenu(props) {
+
+    const { danhSachRap } = props
+    console.log("danhSachRap", danhSachRap)
+
+
+    const renderHeThongRap = () => {
+        return danhSachRap?.map((heThongRap, index) => {
+            return <TabPane tab={<Avatar size="large" src={heThongRap.logo} />}  key={index}>
+                    <CumRapPhim cumRapPhim={heThongRap.lstCumRap} />
+
+            </TabPane>
+        })
+    }
+
     return (
         <>
 
             <div className="container mx-auto mt-28">
                 <Tabs tabPosition="left">
-                    <TabPane tab={<Avatar size="large" src="http://picsum.photos/24" />} key="1">
-                        Content of Tab 1
-                    </TabPane>
-                    <TabPane tab={<Avatar size="large" src="http://picsum.photos/01" />} key="2">
-                        Content of Tab 2
-                    </TabPane>
-                    <TabPane tab={<Avatar size="large" src="http://picsum.photos/00" />} key="3">
-                        Content of Tab 3
-                    </TabPane>
+                    {renderHeThongRap()}
+
                 </Tabs>
             </div>
         </>
     )
 }
+
+
+export default memo(HomeMenu)

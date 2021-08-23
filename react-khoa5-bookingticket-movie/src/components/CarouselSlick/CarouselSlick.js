@@ -31,7 +31,7 @@ export default function CarouselSlick(props) {
         infinite: true,
         centerPadding: "0px",
         slidesToShow: 4,
-        speed: 500,
+        speed: 200,
         rows: 2,
         slidesPerRow: 1,
         nextArrow: <SampleNextArrow />,

@@ -5,7 +5,7 @@ export default function Film(props) {
     const { tenPhim, hinhAnh, moTa } = props.dataFilm
     return (
         <div>
-            <div className="h-full rounded-lg shadow-lg m-2 relative">
+            <div className="h-full rounded-lg shadow-xl m-2 relative">
                 <div className={hoverFilm.parent} style={{position : 'relative',cursor:'pointer'}}>
                     <div style={{ backgroundImage: `url(${hinhAnh}),url(https://picsum.photos/2401)`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
                         <img className="w-full opacity-0" style={{ height: '280px' }} src={hinhAnh} />
