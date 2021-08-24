@@ -9,7 +9,7 @@ const { TabPane } = Tabs;
 function HomeMenu(props) {
 
     const { danhSachRap } = props
-    console.log("danhSachRap", danhSachRap)
+    // console.log("danhSachRap", danhSachRap)
 
 
     const renderHeThongRap = () => {
@@ -23,8 +23,8 @@ function HomeMenu(props) {
 
     return (
         <>
-
             <div className="container mx-auto mt-28">
+           <p className="text-2xl text-yellow-600">Phim theo cụm rạp</p>
                 <Tabs tabPosition="left">
                     {renderHeThongRap()}
 

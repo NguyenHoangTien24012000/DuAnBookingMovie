@@ -1,62 +1,59 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import _ from 'lodash'
+import { NavLink } from 'react-router-dom'
+import { Avatar, Image } from 'antd';
+import { AndroidOutlined, AppleOutlined } from '@ant-design/icons';
 
 export default function Footer() {
+
+    const { heThongRapChieu } = useSelector(state => state.QuanLyRapReducer)
+
+    const arrHeThongRap = _.map(heThongRapChieu, (heThongRap) => {
+        return _.pick(heThongRap, ['maHeThongRap', 'tenHeThongRap', 'logo'])
+    })
+    // console.log("arr", arrHeThongRap)
+
     return (
-        <footer className="py-6 bg-gray-700 text-white mt-20">
+        <footer className="py-6 bg-gray-700 mt-20">
             <div className="container px-6 mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50">
-                <div className="grid grid-cols-12">
-                    <div className="pb-6 col-span-full md:pb-0 md:col-span-6">
+                <div className="grid grid-cols-12  gap-4">
+                    <div className="pb-6 col-span-full md:pb-0 md:col-span-4">
                         <a href="#" className="flex justify-center space-x-3 md:justify-start">
                             <div className="flex items-center justify-center w-1/2 h-12">
                                 <img src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png" />
                             </div>
-                           
+
                         </a>
                     </div>
-                    <div className="col-span-6 text-center md:text-left md:col-span-3">
-                        <p className="pb-1 text-lg font-medium">Category</p>
-                        <ul>
-                            <li>
-                                <a href="#" className="hover:text-violet-600">Link</a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-violet-600">Link</a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-violet-600">Link</a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-violet-600">Link</a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-violet-600">Link</a>
-                            </li>{/**/}
-                        </ul>
+                    <div className="col-span-4 text-center md:text-left md:col-span-4">
+                        <p className="pb-1 text-lg font-medium text-white ">ĐỐI TÁC</p>
+                        <div className="grid grid-cols-3">
+                            {arrHeThongRap?.map((item, index) => {
+                                return <div key={index} className="mb-2">
+                                    <NavLink to="/">
+                                        <Avatar size={50} className="border-2 border-red-400"
+                                            src={item.logo}
+                                        />
+                                    </NavLink>
+                                </div>
+                            })}
+                        </div>
                     </div>
-                    <div className="col-span-6 text-center md:text-left md:col-span-3">
-                        <p className="pb-1 text-lg font-medium">Category</p>
-                        <ul>
-                            <li>
-                                <a href="#" className="hover:text-violet-600">Link</a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-violet-600">Link</a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-violet-600">Link</a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-violet-600">Link</a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-violet-600">Link</a>
-                            </li>{/**/}
-                        </ul>
+                    <div className="col-span-4 text-center md:text-left md:col-span-4 ">
+                        <p className="pb-1 text-lg font-medium blue-400 text-white">MOBILE APP</p>
+
+                        <div className="text-gray-400">
+                            <AndroidOutlined className="mr-5" style={{ fontSize: '40px',cursor : "pointer" }} />
+
+                            <AppleOutlined style={{ fontSize: '40px', cursor : 'pointer' }} />
+                        </div>
+
                     </div>
                 </div>
                 <div className="grid justify-center pt-6 lg:justify-between">
                     <div className="flex flex-col self-center text-sm text-center md:block lg:col-start-1 md:space-x-6">
-                        <span>©2021 All rights reserved</span>
+                        <span className="text-white">©2021 All rights reserved</span>
                         <a href="#">
                             <span>Privacy policy</span>
                         </a>

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import HomeMenu from './HomeMenu/HomeMenu'
+import HomeMenu from '../../components/LichChieuPhimTheoCumRap/HomeMenu'; 
 import { Divider } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import Film from '../../components/Film/Film';
@@ -7,6 +7,7 @@ import CarouselSlick from '../../components/CarouselSlick/CarouselSlick';
 import { getSanhSachPhimAction } from '../../redux/actions/QuanLyDanhSachPhimAction';
 import { Tabs } from 'antd';
 import { layDanhSachRapAction } from '../../redux/actions/QuanLyRapAction';
+import HomeCarousel from './HomeCarousel/HomeCarousel';
 
 
 const { TabPane } = Tabs;
@@ -48,7 +49,9 @@ export default function Home() {
 
 
 
-        <div className="w-full mt-20">
+       <div>
+           <HomeCarousel />
+            <div className="w-full mt-20">
             <div className="container mx-auto">
                 <Divider>
                     <Tabs tabBarStyle={{ color: "red" }} size="large" defaultActiveKey="1" onChange={callback}>
@@ -70,5 +73,6 @@ export default function Home() {
             <HomeMenu danhSachRap ={heThongRapChieu} />
 
         </div>
+       </div>
     )
 }

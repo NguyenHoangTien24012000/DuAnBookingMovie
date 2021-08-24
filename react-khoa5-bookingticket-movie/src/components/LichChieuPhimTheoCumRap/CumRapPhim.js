@@ -9,7 +9,7 @@ const { Meta } = Card;
 const { TabPane } = Tabs;
 export default function CumRapPhim(props) {
     const { cumRapPhim } = props
-    console.log('cumRap', cumRapPhim)
+    // console.log('cumRap', cumRapPhim)
     const renderCumRapPhim = () => {
         return cumRapPhim?.map((cumRap, index) => {
             return <TabPane tab={<div style={{ cursor: 'pointer' }} key={index} className=" text-left w-64 flex space-x-2">

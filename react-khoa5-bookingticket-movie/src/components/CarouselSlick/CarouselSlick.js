@@ -39,11 +39,12 @@ export default function CarouselSlick(props) {
     };
 
     const { danhSachPhim } = props
-
+    // console.log("danhSachPhim", danhSachPhim)
     const renderDanhSachPhim = () => {
         return danhSachPhim?.map((item, index) => {
             return <div key ={index}>
                 <Film dataFilm={item} />
+                
             </div>
         })
     }
