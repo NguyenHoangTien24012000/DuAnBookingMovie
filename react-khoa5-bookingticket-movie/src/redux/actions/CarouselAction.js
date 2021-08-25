@@ -29,10 +29,13 @@ export const getCarouselAction = async (dispatch) => {
     try {
         const result = await quanLyPhimServices.layDanhSachBanner();
         // console.log(result)
-        dispatch({
-            type: GET_CAROUSEL,
-            arrCarousel: result.data.content
-        })
+        if(result.data.statusCode === 200){
+            dispatch({
+                type: GET_CAROUSEL,
+                arrCarousel: result.data.content
+            })
+        }
+      
     } catch (error) {
         console.log('error', error)
     }

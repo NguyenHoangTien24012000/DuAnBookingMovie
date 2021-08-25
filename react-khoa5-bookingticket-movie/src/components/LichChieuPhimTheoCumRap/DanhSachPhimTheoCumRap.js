@@ -30,7 +30,8 @@ export default function DanhSachPhimTheoCumRap(props) {
                         <h6 className="font-semibold mb-0">{phim.tenPhim}</h6>
                         <div className="grid grid-cols-4 gap-4">
                             {phim.lstLichChieuTheoPhim?.slice(0,8).map((item,index) =>{
-                                return <NavLink key={index} className="border-2 rounded-lg border-yellow-400 p-1 hover:bg-red-700" to ="/">
+                                // console.log("item",item)
+                                return <NavLink key={index} className="border-2 rounded-lg border-yellow-400 p-1 hover:bg-red-700" to ={`/checkout/${item.maLichChieu}`}>
                                     {moment(item.ngayChieuGioChieu).format('hh:mm A')}
                                 </NavLink>
                             })}

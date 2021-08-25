@@ -6,10 +6,12 @@ export const getSanhSachPhimAction = () =>{
     return async (dispatch) =>{
         try {
             const result = await quanLyPhimServices.layDanhSachPhim();
-            dispatch({
-                type : GET_DANH_SACH_PHIM,
-                danhSachPhim : result.data.content
-            })
+            if(result.data.statusCode === 200) {
+                dispatch({
+                    type : GET_DANH_SACH_PHIM,
+                    danhSachPhim : result.data.content
+                })
+            }
         } catch (error) {
             console.log("error",error)
         }

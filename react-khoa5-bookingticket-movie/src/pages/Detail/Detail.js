@@ -50,7 +50,8 @@ export default function Detail(props) {
                                         <h6 className="font-semibold mb-0">{thongTinPhimDetail.tenPhim}</h6>
                                         <div className="grid grid-cols-4 gap-4">
                                             {cumRap.lichChieuPhim?.slice(0, 8).map((item, index) => {
-                                                return <NavLink key={index} className="border-2 rounded-lg border-yellow-400 p-1 hover:bg-red-700" to="/">
+                                                
+                                                return <NavLink key={index} className="border-2 rounded-lg border-yellow-400 p-1 hover:bg-red-700" to={`/checkout/${item.maLichChieu}`}>
                                                     {moment(item.ngayChieuGioChieu).format('hh:mm A')}
                                                 </NavLink>
                                             })}

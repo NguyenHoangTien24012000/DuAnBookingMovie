@@ -10,6 +10,7 @@
     "@tsamantanis/react-glassmorphism": "^1.1.2",
     "antd": "^4.16.12",
     "axios": "^0.21.1",
+    "formik": "^2.2.9",
     "history": "^4.10.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
@@ -22,7 +23,8 @@
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0",
     "slick-carousel": "^1.8.1",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "yup": "^0.32.9"
   },
   "scripts": {
     "start": "craco start",

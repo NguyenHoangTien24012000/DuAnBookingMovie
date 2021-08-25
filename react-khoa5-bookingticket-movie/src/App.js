@@ -9,6 +9,10 @@ import News from './pages/News/News';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Detail from './pages/Detail/Detail';
+import { CheckOutTemplate } from './templates/CheckOutTemplate/CheckOutTemplate';
+import CheckOut from './pages/CheckOut/CheckOut';
+import { UserTemplate } from './templates/UserTemplate/UserTemplate';
+
 export const history = createBrowserHistory();
 
 function App() {
@@ -19,9 +23,11 @@ function App() {
         <HomeTemplate exact path="/home"  Component = {Home} />
         <HomeTemplate exact path="/contact" Component={Contact} />
         <HomeTemplate exact path="/news" Component={News} />
-        <HomeTemplate exact path="/login" Component={Login} />
+        <UserTemplate exact path="/login" Component={Login} />
         <HomeTemplate exact path="/register" Component={Register} />
         <HomeTemplate exact path="/detail/:id" Component={Detail} />
+        <CheckOutTemplate exact path="/checkout/:id" Component={CheckOut} />
+      
         
       </Switch>
     </Router>
