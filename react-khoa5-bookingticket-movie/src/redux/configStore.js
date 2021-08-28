@@ -5,13 +5,16 @@ import QuanLyDanhSachPhimReducer from './reducers/QuanLyDanhSachPhimReducer'
 import QuanLyRapReducer from './reducers/QuanLyRapReducer'
 import QuanLyNguoiDungReducer from './reducers/QuanLyNguoiDungReducer'
 import QuanLyDatVeReducer from './reducers/QuanLyDatVeReducer'
+import LoadingReducer from './reducers/LoadingReducer'
+
 
 const rootReducer = combineReducers({
     CarouselReducer,
     QuanLyDanhSachPhimReducer,
     QuanLyRapReducer,
     QuanLyNguoiDungReducer,
-    QuanLyDatVeReducer
+    QuanLyDatVeReducer,
+    LoadingReducer
 })
 
 

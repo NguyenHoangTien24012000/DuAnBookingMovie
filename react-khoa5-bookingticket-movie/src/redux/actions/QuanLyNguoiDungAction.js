@@ -1,5 +1,6 @@
 import { history } from "../../App"
 import { quanLyNguoiDung } from "../../services/QuanLyNguoiDung"
+import { OPEN_LOADING } from "../types/LoadingTypes"
 import { SET_THONG_TIN_NGUOI_DUNG, THONG_TIN_NGUOI_DUNG_DAT_VE } from "../types/QuanLyNguoiDungTypes"
 
 
@@ -25,6 +26,7 @@ export const dangNhapAction = (thongTinNguoiDung) => {
 export const thongTinTaiKhoanAction = () =>{
     return async dispatch =>{
         try {
+         
             const result = await quanLyNguoiDung.thongTinTaiKhoan()
              if(result.data.statusCode === 200) {
                  dispatch({
@@ -32,6 +34,8 @@ export const thongTinTaiKhoanAction = () =>{
                      thongTinNguoiDungDatVe : result.data.content
                  })
              }
+             
+
         } catch (error) {
             console.log("error",error)
         }

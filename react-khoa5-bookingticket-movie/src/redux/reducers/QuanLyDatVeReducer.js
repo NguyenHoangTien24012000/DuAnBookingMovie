@@ -1,8 +1,10 @@
-import { DAT_VE, SET_CHI_TIET_PHONG_VE } from "../types/QuanLyDatVeTypes"
+import { CHUYEN_TAB_CHECKOUT, CHUYEN_TAB_KET_QUA, DAT_VE, RESET_DAT_VE, SET_CHI_TIET_PHONG_VE } from "../types/QuanLyDatVeTypes"
 
 const initialState = {
     chiTietPhongVe : {},
-    danhSachGheDangDat : []
+    danhSachGheDangDat : [],
+    danhSachGheKhachHangKhacDangdat : [{maGhe : 47881}, {maGhe : 47882}],
+    tabCheckOut : "1"
 }
 
 export default (state = initialState,action) => {
@@ -21,6 +23,15 @@ export default (state = initialState,action) => {
                 danhSachGheDangDatCapNhat.splice(index,1)
             }
             return {...state,danhSachGheDangDat : danhSachGheDangDatCapNhat}
+        }
+        case RESET_DAT_VE:{
+            return {...state, danhSachGheDangDat : []}
+        }
+        case CHUYEN_TAB_KET_QUA :{
+            return {...state,tabCheckOut : "2"}
+        }
+        case CHUYEN_TAB_CHECKOUT:{
+            return {...state, tabCheckOut : action.tab}
         }
    
     default:

@@ -3,7 +3,7 @@ import { Button } from 'antd'
 import React, { Fragment, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { datVeAction, layChitietPhongVeAction } from '../../redux/actions/QuanLyDatVeAction'
-import { DAT_VE } from '../../redux/types/QuanLyDatVeTypes'
+import { CHUYEN_TAB_CHECKOUT, CHUYEN_TAB_KET_QUA, DAT_VE } from '../../redux/types/QuanLyDatVeTypes'
 import cssTrapezoid from './CheckOut.module.css'
 import './StyleGhe.css'
 import _ from 'lodash'
@@ -11,20 +11,24 @@ import { ThongTinDatVe } from '../../_core/models/ThongTinDatVe'
 import { Tabs } from 'antd';
 import { thongTinTaiKhoanAction } from '../../redux/actions/QuanLyNguoiDungAction'
 import moment from 'moment'
+// import { connection } from '../../index'
 
 
 
 function CheckOut(props) {
     const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer)
-    const { chiTietPhongVe, danhSachGheDangDat } = useSelector(state => state.QuanLyDatVeReducer)
-    // console.log("chiTietPhongVe", chiTietPhongVe)
+    const { chiTietPhongVe, danhSachGheDangDat, danhSachGheKhachHangKhacDangdat} = useSelector(state => state.QuanLyDatVeReducer)
+    console.log("chiTietPhongVe", chiTietPhongVe)
     const { danhSachGhe, thongTinPhim } = chiTietPhongVe
-    // console.log("dang dat", danhSachGheDangDat)
-    // console.log(userLogin)
-    // console.log(props)
+
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(layChitietPhongVeAction(props.match.params.id))
+        //Load danh sach ghe dang dat tu server về 
+        // connection.on("loadDanhSachGheDaDat",(dsGheKhachDat) =>{
+        //     console.log('DanhsachGheKhachDat', dsGheKhachDat)
+        // })
+
     }, [])
     const renderDanhSachGhe = () => {
         return danhSachGhe?.map((item, index) => {
@@ -32,7 +36,8 @@ function CheckOut(props) {
             let gheDaDat = item.daDat ? 'gheDaDat' : ''
             let gheDangDat = danhSachGheDangDat.findIndex(dangDat => dangDat.maGhe === item.maGhe)
             let cssGheDangDat = gheDangDat !== -1 ? 'gheDangDat' : ''
-
+            let gheNguoiKhac = danhSachGheKhachHangKhacDangdat.findIndex(nguoiKhac => nguoiKhac.maGhe === item.maGhe)
+            let cssGheNguoiKhac = gheNguoiKhac !== -1 ? 'gheNguoiKhacDangDat' : ''
             let cssGheBanDat = userLogin.taiKhoan === item.taiKhoanNguoiDat ? 'gheDoBanDat' : ''
             return <Fragment key={index}>
                 <button onClick={() => {
@@ -40,7 +45,7 @@ function CheckOut(props) {
                         type: DAT_VE,
                         gheDangDat: item
                     })
-                }} type="button" disabled={item.daDat} className={`ghe ${gheVip} ${gheDaDat} ${cssGheDangDat} ${cssGheBanDat}`}>{item.stt}</button>
+                }} type="button" disabled={item.daDat || gheNguoiKhac !== -1} className={`ghe ${gheVip} ${gheDaDat} ${cssGheDangDat} ${cssGheBanDat} ${cssGheNguoiKhac}`}>{item.stt}</button>
                 {(index + 1) % 16 === 0 ? <br /> : ''}
             </Fragment>
         })
@@ -59,7 +64,8 @@ function CheckOut(props) {
 
                 </div>
                 <div className="mt-14 container">
-                    <div className="grid grid-cols-8">
+                    <hr></hr>
+                    <div className="grid grid-cols-8 mt-2">
                         <div className="col-span-1">
                             <div className="ghe" />
                             <p>Ghế chưa đặt</p>
@@ -70,7 +76,7 @@ function CheckOut(props) {
                         </div>
                         <div className="col-span-1">
                             <div className="ghe gheDaDat" />
-                            <p>Ghế đã đặt</p>
+                            <p>Ghế đã được đặt</p>
                         </div>
                         <div className="col-span-1">
                             <div className="ghe gheDangDat" />
@@ -80,15 +86,17 @@ function CheckOut(props) {
                             <div className="ghe gheDoBanDat" />
                             <p>Ghế bạn đã đặt</p>
                         </div>
+                        <div className="col-span-3">
+                            <div className="ghe gheNguoiKhacDangDat"></div>
+                            <p>Ghế khách hàng khác đang đặt</p>
+                        </div>
                     </div>
-                    <p>Giá vé ghế Thường: <span className="text-lg font-bold">75.000 đ</span></p>
-                    <p>Giá vé ghế Vip: <span className="text-lg font-bold">90.000 đ</span></p>
                 </div>
 
             </div>
             <div className="col-span-4 min-h-screen">
 
-                <p className="text-center text-4xl font-bold text-green-500 mt-10">0 đ</p>
+                <p className="text-center text-2xl font-bold text-green-500 mt-10">Phần thanh toán</p>
                 <hr className="shadow-sm"></hr>
                 <p className="mt-5">Tên Phim: <span className="text-xl font-bold">{thongTinPhim?.tenPhim}</span></p>
                 <p>Tên Cụm Rạp: <span className="font-bold">{thongTinPhim?.tenCumRap}</span></p>
@@ -112,7 +120,7 @@ function CheckOut(props) {
                                 return <tr key={index} >
                                     <td> <p className="flex items-center  justify-center ghe gheDangDat">{item.stt}</p></td>
                                     <td>{item.loaiGhe}</td>
-                                    <td>{item.giaVe}</td>
+                                    <td>{item.giaVe.toLocaleString()} đ</td>
 
                                 </tr>
                             })}
@@ -134,7 +142,7 @@ function CheckOut(props) {
                 <p className="font-bold">{userLogin.email}</p>
                 <hr className="shadow-sm"></hr>
 
-                <div className="grid grid-rows-3 h-1/4">
+                <div className="grid grid-rows-3 h-auto">
                     <Button onClick={() => {
                         const thongTinDatVe = new ThongTinDatVe();
                         thongTinDatVe.maLichChieu = props.match.params.id;
@@ -153,8 +161,16 @@ function CheckOut(props) {
 
 const { TabPane } = Tabs
 export default function (props) {
+    const {tabCheckOut} = useSelector(state => state.QuanLyDatVeReducer)
+    const dispatch = useDispatch()
     return <div>
-        <Tabs className="m-10" defaultActiveKey="1">
+        <Tabs className="m-10" defaultActiveKey="1" activeKey={tabCheckOut} onChange={(key) =>{
+            console.log(key)
+            dispatch({
+                type : CHUYEN_TAB_CHECKOUT,
+                tab : key.toString()
+            })
+        }}>
             <TabPane tab="01 CHỌN GHẾ & THANH TOÁN" key="1">
                 <CheckOut {...props} />
             </TabPane>
@@ -171,8 +187,9 @@ function KetQuaDatVe(props) {
     const dispatch = useDispatch()
     // const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer)
     const { thongTinNguoiDungDatVe } = useSelector(state => state.QuanLyNguoiDungReducer)
+    console.log('thong tin dat ve', thongTinNguoiDungDatVe)
     const { thongTinDatVe } = thongTinNguoiDungDatVe
-    console.log(thongTinNguoiDungDatVe)
+    const {chiTietPhongVe} = useSelector(state => state.QuanLyDatVeReducer)
     useEffect(() => {
         dispatch(thongTinTaiKhoanAction())
     }, [])
@@ -180,14 +197,16 @@ function KetQuaDatVe(props) {
         <div className="grid grid-cols-2">
             <div className="col-span-1">
                 <p className="font-bold text-2xl">Thông tin tài khoản</p>
-
+                <p>Họ tên khách hàng đặt vé: <span className="font-bold">{thongTinNguoiDungDatVe.hoTen}</span></p>
+                <p>Email khách hàng đặt vé: <span className="font-bold">{thongTinNguoiDungDatVe.email}</span></p>
+                <p>Tài khoản đặt vé: <span className="font-bold">{thongTinNguoiDungDatVe.taiKhoan}</span></p>
             </div>
             <div className="col-span-1">
-                <p className="font-bold text-2xl">Danh sách đặt vé</p>
+                <p className="font-bold text-2xl">Lịch sử đặt vé</p>
                 {thongTinDatVe?.map((item, index) => {
-                    return <div style={{ cursor: 'pointer' }} key={index} className=" text-left w-full flex space-x-2">
+                    return <div key={index} className="mt-2 text-left w-full flex space-x-2">
 
-                        <img src={item.hinhAnh} style={{ width: "200px", height: "230px" }} alt={index} className="rounded" />
+                        <img src={item.hinhAnh} style={{ width: "200px", height: "250px" }} alt={index} className="rounded" />
 
                         <div className="flex flex-col  whitespace-normal">
                             <div>
@@ -196,6 +215,7 @@ function KetQuaDatVe(props) {
                                 <p className="">Hệ thống rạp chiếu: {item.danhSachGhe[0]?.tenHeThongRap}</p>
                                 <p className="">Rạp chiếu: {item.danhSachGhe[0]?.tenCumRap}</p>
                                 <p className="">Mã vé: {item.maVe}</p>
+                                <p>Ngày giờ chiếu {chiTietPhongVe?.thongTinPhim.gioChieu}-{chiTietPhongVe?.thongTinPhim.ngayChieu}</p>
                                 <span>Số ghế ngồi: </span>
                                 {item.danhSachGhe?.map((item,index) =>{
                                     return <span className="text-sm m-1 border-blue-800 border-2 rounded-xl"  key={index}>{item.tenGhe}</span>

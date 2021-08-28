@@ -1,3 +1,10 @@
 export const SET_CHI_TIET_PHONG_VE = 'SET_CHI_TIET_PHONG_VE'
 
 export const DAT_VE = 'DAT_VE'
+
+export const RESET_DAT_VE = "RESET_DAT_VE"
+
+
+export const CHUYEN_TAB_KET_QUA = 'CHUYEN_TAB_KET_QUA'
+
+export const CHUYEN_TAB_CHECKOUT = "CHUYEN_TAB_CHECKOUT"

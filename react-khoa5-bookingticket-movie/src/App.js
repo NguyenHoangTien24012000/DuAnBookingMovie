@@ -12,13 +12,14 @@ import Detail from './pages/Detail/Detail';
 import { CheckOutTemplate } from './templates/CheckOutTemplate/CheckOutTemplate';
 import CheckOut from './pages/CheckOut/CheckOut';
 import { UserTemplate } from './templates/UserTemplate/UserTemplate';
+import Loading from './components/Loading/Loading';
 
 export const history = createBrowserHistory();
 
 function App() {
   return (
     <Router history={history}>
-        
+        <Loading />
       <Switch>
         <HomeTemplate exact path="/home"  Component = {Home} />
         <HomeTemplate exact path="/contact" Component={Contact} />
