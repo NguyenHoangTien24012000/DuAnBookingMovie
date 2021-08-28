@@ -15,7 +15,7 @@ export default function Detail(props) {
     const { id } = props.match.params
     const dispatch = useDispatch()
     const { thongTinPhimDetail } = useSelector(state => state.QuanLyRapReducer)
-    console.log({ thongTinPhimDetail })
+    // console.log({ thongTinPhimDetail })
 
     useEffect(() => {
         dispatch(setThongTinPhimDetailAction(id))
