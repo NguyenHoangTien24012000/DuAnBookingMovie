@@ -1,7 +1,16 @@
 import React from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
+import { Select } from 'antd';
+
+const { Option } = Select;
+
 
 export default function Header(props) {
+    const { t, i18n } = useTranslation();
+    function handleChange(value) {
+        i18n.changeLanguage(value)
+      }
     return (
         <header className="p-4 bg-coolGray-100 text-coolGray-800 bg-black bg-opacity-40 text-white fixed w-full z-10">
             <div className="container flex justify-between h-16 mx-auto">
@@ -18,11 +27,15 @@ export default function Header(props) {
                     <li className="flex">
                         <NavLink to="/news" activeClassName="border-b-2 border-white" className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent">News</NavLink>
                     </li>
-                  
+
                 </ul>
                 <div className="items-center flex-shrink-0 hidden lg:flex">
-                    <button className="self-center px-8 py-3 rounded"><NavLink to='/login' className="text-white">Login</NavLink></button>
-                    <button className="self-center px-8 py-3 font-semibold rounded bg-violet-600 text-coolGray-50">Sign up</button>
+                    <button className="self-center px-8 py-3 rounded"><NavLink to='/login' className="text-white"> <Trans i18nKey="signin">signin</Trans></NavLink></button>
+                    <button className="self-center px-8 py-3 font-semibold rounded bg-violet-600 text-coolGray-50"> <Trans i18nKey="signup">signup</Trans></button>
+                    <Select defaultValue="EN" style={{ width: 80 }} onChange={handleChange}>
+                        <Option value="en">EN</Option>
+                        <Option value="vi">VN</Option>
+                    </Select>
                 </div>
                 <button className="p-4 lg:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 text-coolGray-800">

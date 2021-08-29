@@ -7,6 +7,8 @@ import { Provider } from 'react-redux';
 import { store } from './redux/configStore';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import './i18n';
+import { Suspense } from 'react';
 // import { DOMAIN } from './util/config';
 
 // //Cau hinh realtime (websocket voi signalR)
@@ -29,7 +31,9 @@ import "slick-carousel/slick/slick-theme.css";
 // }) 
  ReactDOM.render(
   <Provider store ={store}>
-    <App />
+      <Suspense fallback={<div>Loading...</div>}>
+      <App />
+      </Suspense>
   </Provider>
   ,
   document.getElementById('root')
