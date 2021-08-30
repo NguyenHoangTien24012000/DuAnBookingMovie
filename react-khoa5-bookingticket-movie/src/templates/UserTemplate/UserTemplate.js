@@ -6,7 +6,7 @@ import { Route } from "react-router-dom"
 export const UserTemplate = (props) => {
 
     const { Component, ...restProps } = props
-
+    
     return <Route {...restProps} render={(propsRoute) => {
         return <Fragment>
             <section className="flex flex-col md:flex-row h-screen items-center">

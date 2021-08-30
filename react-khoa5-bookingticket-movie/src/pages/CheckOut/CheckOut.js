@@ -11,14 +11,17 @@ import { ThongTinDatVe } from '../../_core/models/ThongTinDatVe'
 import { Tabs } from 'antd';
 import { thongTinTaiKhoanAction } from '../../redux/actions/QuanLyNguoiDungAction'
 import moment from 'moment'
+import { history } from '../../App'
+import { ACCESS_TOKEN, USER_LOGIN } from '../../util/config'
+import { NavLink } from 'react-router-dom'
 // import { connection } from '../../index'
 
 
 
 function CheckOut(props) {
     const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer)
-    const { chiTietPhongVe, danhSachGheDangDat, danhSachGheKhachHangKhacDangdat} = useSelector(state => state.QuanLyDatVeReducer)
-    console.log("chiTietPhongVe", chiTietPhongVe)
+    const { chiTietPhongVe, danhSachGheDangDat, danhSachGheKhachHangKhacDangdat } = useSelector(state => state.QuanLyDatVeReducer)
+    // console.log("chiTietPhongVe", chiTietPhongVe)
     const { danhSachGhe, thongTinPhim } = chiTietPhongVe
 
     const dispatch = useDispatch()
@@ -161,14 +164,33 @@ function CheckOut(props) {
 
 const { TabPane } = Tabs
 export default function (props) {
-    const {tabCheckOut} = useSelector(state => state.QuanLyDatVeReducer)
+    const { tabCheckOut } = useSelector(state => state.QuanLyDatVeReducer)
     const dispatch = useDispatch()
+    const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer)
+    useEffect(() => {
+        
+        return () => {
+            dispatch({
+                type: CHUYEN_TAB_CHECKOUT,
+                tab: "1"
+            })
+        }
+    }, [])
+    const operations = <Fragment>
+        <Button onClick={() => {history.push('/profile')}}>{userLogin.taiKhoan}</Button>
+        <Button className="ml-1" onClick={()=>{
+            localStorage.removeItem(USER_LOGIN)
+            localStorage.removeItem(ACCESS_TOKEN)
+            history.push('/home')
+            window.location.reload()
+        }}>Đăng xuất</Button>
+    </Fragment>
     return <div>
-        <Tabs className="m-10" defaultActiveKey="1" activeKey={tabCheckOut} onChange={(key) =>{
+        <Tabs tabBarExtraContent={operations} className="m-10" defaultActiveKey="1" activeKey={tabCheckOut} onChange={(key) => {
             console.log(key)
             dispatch({
-                type : CHUYEN_TAB_CHECKOUT,
-                tab : key.toString()
+                type: CHUYEN_TAB_CHECKOUT,
+                tab: key.toString()
             })
         }}>
             <TabPane tab="01 CHỌN GHẾ & THANH TOÁN" key="1">
@@ -176,6 +198,9 @@ export default function (props) {
             </TabPane>
             <TabPane tab="02 KẾT QUẢ ĐẶT VÉ" key="2">
                 <KetQuaDatVe {...props} />
+            </TabPane>
+            <TabPane tab={ <NavLink to="/home" >Home</NavLink>} key="3">
+               
             </TabPane>
 
         </Tabs>
@@ -187,9 +212,9 @@ function KetQuaDatVe(props) {
     const dispatch = useDispatch()
     // const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer)
     const { thongTinNguoiDungDatVe } = useSelector(state => state.QuanLyNguoiDungReducer)
-    console.log('thong tin dat ve', thongTinNguoiDungDatVe)
+    // console.log('thong tin dat ve', thongTinNguoiDungDatVe)
     const { thongTinDatVe } = thongTinNguoiDungDatVe
-    const {chiTietPhongVe} = useSelector(state => state.QuanLyDatVeReducer)
+    const { chiTietPhongVe } = useSelector(state => state.QuanLyDatVeReducer)
     useEffect(() => {
         dispatch(thongTinTaiKhoanAction())
     }, [])
@@ -217,8 +242,8 @@ function KetQuaDatVe(props) {
                                 <p className="">Mã vé: {item.maVe}</p>
                                 <p>Ngày giờ chiếu {chiTietPhongVe?.thongTinPhim.gioChieu}-{chiTietPhongVe?.thongTinPhim.ngayChieu}</p>
                                 <span>Số ghế ngồi: </span>
-                                {item.danhSachGhe?.map((item,index) =>{
-                                    return <span className="text-sm m-1 border-blue-800 border-2 rounded-xl"  key={index}>{item.tenGhe}</span>
+                                {item.danhSachGhe?.map((item, index) => {
+                                    return <span className="text-sm m-1 border-blue-800 border-2 rounded-xl" key={index}>{item.tenGhe}</span>
                                 })}
                             </div>
                         </div>
