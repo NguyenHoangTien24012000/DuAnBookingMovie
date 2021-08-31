@@ -1,11 +1,12 @@
-import { GET_DANH_SACH_PHIM } from "../types/QuanLyDanhSachPhimType"
+import { GET_DANH_SACH_PHIM, SET_THONG_TIN_PHIM } from "../types/QuanLyDanhSachPhimType"
 
 const initialState = {
     danhSachPhim: [
       
     ],
     danhSachPhimDangChieu : [],
-    danhSachPhimSapChieu : []
+    danhSachPhimSapChieu : [],
+    thongTinPhim : {}
 }
 
 export default (state = initialState, action) => {
@@ -16,6 +17,9 @@ export default (state = initialState, action) => {
             state.danhSachPhimSapChieu = action.danhSachPhim.filter(item => item.sapChieu = true).slice(11)
             
             return {...state}
+        }
+        case SET_THONG_TIN_PHIM :{
+            return {...state, thongTinPhim : action.thongTinPhim}
         }
 
 

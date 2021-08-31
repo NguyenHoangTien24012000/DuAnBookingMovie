@@ -53,12 +53,15 @@ export const AdminTemplate = (props) => {
                             <Menu.Item key="4" >
                             <NavLink to='/admin/addnewfilm'>New Films</NavLink>
                             </Menu.Item>
+                            {/* <Menu.Item key="5" >
+                            <NavLink to='/admin/editfilm'>Edit Films</NavLink>
+                            </Menu.Item> */}
                             
                         </SubMenu>
-                        <Menu.Item key="5" icon={<DesktopOutlined />}>
+                        <Menu.Item key="6" icon={<DesktopOutlined />}>
                             Option 2
                         </Menu.Item>
-                        <Menu.Item key="6" icon={<UserOutlined />} title="User">
+                        <Menu.Item key="7" icon={<UserOutlined />} title="User">
                             User
                         </Menu.Item >
 

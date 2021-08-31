@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { Table, Tag, Space, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSanhSachPhimAction } from '../../../redux/actions/QuanLyDanhSachPhimAction';
+import { getSanhSachPhimAction, xoaPhimAction } from '../../../redux/actions/QuanLyDanhSachPhimAction';
 import { Fragment } from 'react';
 import { history } from '../../../App';
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -13,7 +14,7 @@ export default function AdminFilms() {
     useEffect(() => {
         dispatch(getSanhSachPhimAction())
     }, [])
-    console.log(danhSachPhim)
+    // console.log(danhSachPhim)
     const columns = [
         {
             title: 'Mã phim',
@@ -61,10 +62,17 @@ export default function AdminFilms() {
          },
          {
             title :"Xoá Sửa",
+            key : "action",
+            dataIndex : "action",
             render : (text,arr,index) =>{
                 return <Fragment key = {index}>
-                    <Button  className="inline-block mr-1"><i className="fa fa-edit"></i></Button>
-                    <Button className="inline-block "><i className="fa fa-trash-alt"></i></Button>
+                    <Button key={1} className="inline-block mr-1"><NavLink to={`/admin/editfilm/${arr.maPhim}`} ><i className="fa fa-edit" /></NavLink></Button>
+                    <Button key={2} className="inline-block " onClick ={()=>{
+                        if(window.confirm("Bạn có chắc muốn xoá " + arr.tenPhim + " không?")){
+                            dispatch(xoaPhimAction(arr.maPhim))
+                        }
+    
+                    }}><i className="fa fa-trash-alt"></i></Button>
                 </Fragment>
             },
             width : '20%'
@@ -78,7 +86,7 @@ export default function AdminFilms() {
             <Button type="primary" className="mb-2" onClick={() =>{
                 history.push('/admin/addnewfilm')
             }}>Thêm Phim</Button>
-            <Table columns={columns} dataSource={data}  />
+            <Table  columns={columns} dataSource={data} rowKey={"maPhim"} />
         </div>
     )
 }

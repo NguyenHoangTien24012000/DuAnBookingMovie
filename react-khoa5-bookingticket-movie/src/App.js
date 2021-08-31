@@ -18,6 +18,7 @@ import { AdminTemplate } from './templates/AdminTemplate/AdminTemplate';
 
 import AdminFilms from './pages/Admin/AdminFilms/AdminFilms';
 import AddNewFilm from './pages/Admin/AdminFilms/AddNewFilm';
+import EditFilm from './pages/Admin/AdminFilms/EditFilm';
 
 export const history = createBrowserHistory();
 
@@ -36,6 +37,7 @@ function App() {
         <HomeTemplate exact path="/profile" Component = {Profile} />
         <AdminTemplate exact path="/admin/films" Component ={AdminFilms} />
         <AdminTemplate exact path="/admin/addnewfilm" Component={AddNewFilm} />
+        <AdminTemplate exact path="/admin/editfilm/:id" Component={EditFilm} />
       </Switch>
     </Router>
   );

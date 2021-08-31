@@ -1,1 +1,3 @@
 export const GET_DANH_SACH_PHIM = 'GET_DANH_SACH_PHIM'
+
+export const SET_THONG_TIN_PHIM = "SET_THONG_TIN_PHIM"
