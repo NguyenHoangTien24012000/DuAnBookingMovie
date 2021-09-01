@@ -3,10 +3,10 @@ import { history } from "../../App";
 import { quanLyPhimServices } from "../../services/QuanLyPhimServices"
 import { GET_DANH_SACH_PHIM, SET_THONG_TIN_PHIM } from "../types/QuanLyDanhSachPhimType";
 
-export const getSanhSachPhimAction = () =>{
+export const getSanhSachPhimAction = (tenPhim = '') =>{
     return async (dispatch) =>{
         try {
-            const result = await quanLyPhimServices.layDanhSachPhim();
+            const result = await quanLyPhimServices.layDanhSachPhim(tenPhim);
             if(result.data.statusCode === 200) {
                 dispatch({
                     type : GET_DANH_SACH_PHIM,

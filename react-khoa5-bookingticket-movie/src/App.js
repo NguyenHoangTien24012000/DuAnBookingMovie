@@ -19,6 +19,7 @@ import { AdminTemplate } from './templates/AdminTemplate/AdminTemplate';
 import AdminFilms from './pages/Admin/AdminFilms/AdminFilms';
 import AddNewFilm from './pages/Admin/AdminFilms/AddNewFilm';
 import EditFilm from './pages/Admin/AdminFilms/EditFilm';
+import AdminShowtimesFilm from './pages/Admin/AdminFilms/AdminShowtimesFilm';
 
 export const history = createBrowserHistory();
 
@@ -38,6 +39,8 @@ function App() {
         <AdminTemplate exact path="/admin/films" Component ={AdminFilms} />
         <AdminTemplate exact path="/admin/addnewfilm" Component={AddNewFilm} />
         <AdminTemplate exact path="/admin/editfilm/:id" Component={EditFilm} />
+        <AdminTemplate exact path ="/admin/film/showtimes/:id/:tenPhim" Component={AdminShowtimesFilm} />
+        
       </Switch>
     </Router>
   );

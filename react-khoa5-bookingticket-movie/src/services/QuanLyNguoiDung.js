@@ -12,6 +12,10 @@ class QuanLyNguoiDung extends baseServices{
     thongTinTaiKhoan = () =>{
         return this.post(`/QuanLyNguoiDung/ThongTinTaiKhoan`)
     }
+    dangKyTaiKhoan = (thongTinDangKi) =>{
+        return this.post(`/QuanLyNguoiDung/DangKy`,thongTinDangKi)
+    }
+
     
 
 }

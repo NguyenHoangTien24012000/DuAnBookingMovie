@@ -41,3 +41,17 @@ export const thongTinTaiKhoanAction = () =>{
         }
     }
 }
+
+export const dangKiTaiKhoanAction = (thongTinDangKi) =>{
+    return async dispatch =>{
+        try {
+            const result = await quanLyNguoiDung.dangKyTaiKhoan(thongTinDangKi)
+            if(result.data.statusCode === 200){
+                alert("Đăng kí tài khoản thành công!!!")
+                history.push('/home')
+            }
+        } catch (error) {
+            console.log("Error" , error)
+        }
+    }
+}

@@ -8,7 +8,11 @@ export class QuanLyPhimSevices extends baseServices{
     layDanhSachBanner = () =>{
         return this.get(`/QuanLyPhim/LayDanhSachBanner`);
     }
-    layDanhSachPhim = ()=>{
+    layDanhSachPhim = (tenPhim='')=>{
+        if(tenPhim !== ''){
+
+            return this.get(`/QuanLyPhim/LayDanhSachPhim?maNhom=${GROUPID}&tenPhim=${tenPhim}`)
+        }
         return this.get(`/QuanLyPhim/LayDanhSachPhim?maNhom=${GROUPID}`)
     }
     themPhimUploadHinh = (phim) =>{
