@@ -1,5 +1,5 @@
 import { ACCESS_TOKEN, USER_LOGIN } from "../../util/config";
-import { SET_THONG_TIN_NGUOI_DUNG, THONG_TIN_NGUOI_DUNG_DAT_VE } from "../types/QuanLyNguoiDungTypes"
+import { LAY_DANH_SACH_LOAI_NGUOI_DUNG, SET_DANH_SACH_NGUOI_DUNG, SET_NGUOI_DUNG_TIM_KIEM, SET_THONG_TIN_NGUOI_DUNG, THONG_TIN_NGUOI_DUNG_DAT_VE } from "../types/QuanLyNguoiDungTypes"
 
 let user = {};
 if(localStorage.getItem(USER_LOGIN)){
@@ -8,7 +8,9 @@ if(localStorage.getItem(USER_LOGIN)){
 
 const initialState = {
     userLogin : user,
-    thongTinNguoiDungDatVe : {}
+    thongTinNguoiDungDatVe : {},
+    danhSachNguoiDung : [],
+    danhSachLoaiNguoiDung : []
 }
 
 export default (state = initialState,action) => {
@@ -24,7 +26,12 @@ export default (state = initialState,action) => {
         case THONG_TIN_NGUOI_DUNG_DAT_VE :{
             return {...state,thongTinNguoiDungDatVe :action.thongTinNguoiDungDatVe}
         }
-  
+        case SET_DANH_SACH_NGUOI_DUNG :{
+            return {...state, danhSachNguoiDung : action.danhSachNguoiDung}
+        }
+        case LAY_DANH_SACH_LOAI_NGUOI_DUNG :{
+            return {...state,danhSachLoaiNguoiDung : action.danhSachLoaiNguoiDung}
+        }
 
     default:
         return state

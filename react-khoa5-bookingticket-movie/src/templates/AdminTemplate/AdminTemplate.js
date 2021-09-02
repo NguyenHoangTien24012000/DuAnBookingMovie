@@ -43,27 +43,32 @@ export const AdminTemplate = (props) => {
                 <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
                     <div className="logo" />
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                        <Menu.Item key="1" icon={<PieChartOutlined />}>
-                            <NavLink to="/admin/user">Users</NavLink>
-                        </Menu.Item>
-                        <SubMenu icon={<FileOutlined />} key="2" title="Admin Films">
-                            <Menu.Item key="3" >
-                                <NavLink to='/admin/films' >Films</NavLink>
+                        
+                        <SubMenu  icon={<UserOutlined />} key="1" title="Admin User">
+                            <Menu.Item key="2" >
+                                <NavLink to='/admin/users' >Users</NavLink>
                             </Menu.Item>
-                            <Menu.Item key="4" >
-                            <NavLink to='/admin/addnewfilm'>New Films</NavLink>
+                            <Menu.Item key="3" >
+                                <NavLink to='/admin/addnewuser'>New User</NavLink>
                             </Menu.Item>
                             {/* <Menu.Item key="5" >
                             <NavLink to='/admin/editfilm'>Edit Films</NavLink>
                             </Menu.Item> */}
-                            
+
                         </SubMenu>
-                        <Menu.Item key="6" icon={<DesktopOutlined />}>
-                            Option 2
-                        </Menu.Item>
-                        <Menu.Item key="7" icon={<UserOutlined />} title="User">
-                            User
-                        </Menu.Item >
+                        <SubMenu icon={<FileOutlined />} key="4" title="Admin Films">
+                            <Menu.Item key="5" >
+                                <NavLink to='/admin/films' >Films</NavLink>
+                            </Menu.Item>
+                            <Menu.Item key="6" >
+                                <NavLink to='/admin/addnewfilm'>New Films</NavLink>
+                            </Menu.Item>
+                            {/* <Menu.Item key="5" >
+                            <NavLink to='/admin/editfilm'>Edit Films</NavLink>
+                            </Menu.Item> */}
+
+                        </SubMenu>
+                      
 
 
                     </Menu>

@@ -33,7 +33,7 @@ export default function Login(props) {
             <form onSubmit={handleSubmit} className="mt-6" action="#" method="POST">
                 <div>
                     <label className="block text-gray-700">Account</label>
-                    <input name="taiKhoan" onChange={handleChange} placeholder="Enter Account" className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autoComplete required />
+                    <input name="taiKhoan" onChange={handleChange} placeholder="Enter Account" className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autoFocus autoComplete = "true" required />
                 </div>
                 <div className="mt-4">
                     <label className="block text-gray-700">Password</label>

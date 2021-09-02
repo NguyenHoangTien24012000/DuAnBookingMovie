@@ -1,3 +1,4 @@
+import { GROUPID } from "../util/config";
 import { baseServices } from "./baseServices";
 
 
@@ -15,9 +16,24 @@ class QuanLyNguoiDung extends baseServices{
     dangKyTaiKhoan = (thongTinDangKi) =>{
         return this.post(`/QuanLyNguoiDung/DangKy`,thongTinDangKi)
     }
-
-    
-
+    layDanhSachNguoiDung = (nguoiDung = '') =>{
+        if(nguoiDung !== ''){
+            return this.get(`/QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=${GROUPID}&tuKhoa=${nguoiDung}`)
+        }
+        return this.get(`/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${GROUPID}`)
+    }
+    themNguoiDung = (thongTinNguoiDung) =>{
+        return this.post(`/QuanLyNguoiDung/ThemNguoiDung`,thongTinNguoiDung)
+    }
+    xoaNguoiDung = (taiKhoan) =>{
+        return this.delete(`/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`)
+    }
+    capNhatThongTinNguoiDung = (taiKhoan) =>{
+        return this.post(`/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,taiKhoan)
+    }
+    layDanhSachLoaiNguoiDung = () =>{
+        return this.get(`/QuanLyNguoiDung/LayDanhSachLoaiNguoiDung`)
+    }
 }
 
 

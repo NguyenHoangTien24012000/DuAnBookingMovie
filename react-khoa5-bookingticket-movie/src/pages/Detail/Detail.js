@@ -77,9 +77,6 @@ export default function Detail(props) {
                     borderRadius={0} // default border radius value is 10px
                 >
                     <div className="col-start-3 col-span-2 flex flex-wrap content-center">
-                        {/* <div className="">
-                            <img src={thongTinPhimDetail?.hinhAnh} alt="123"></img>
-                        </div> */}
                         <div className={hoverFilm.parent} style={{ position: 'relative', cursor: 'pointer' }}>
                             <div style={{ backgroundImage: `url(${thongTinPhimDetail?.hinhAnh}),url(https://picsum.photos/2401)`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
                                 <img className="w-full opacity-0" style={{ height: '350px' }} src={thongTinPhimDetail?.hinhAnh} />

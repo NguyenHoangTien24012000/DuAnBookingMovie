@@ -62,7 +62,7 @@ export default function AdminFilms() {
             width: "40%"
         },
         {
-            title: "Xoá Sửa",
+            title: "Xoá, Sửa, Tạo lịch chiếu",
             key: "action",
             dataIndex: "action",
             render: (text, arr, index) => {

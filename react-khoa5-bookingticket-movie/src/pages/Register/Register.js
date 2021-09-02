@@ -35,18 +35,18 @@ export default function Register() {
             <form onSubmit={formik.handleSubmit} className="mt-6" action="#" method="POST">
                 <div>
                     <label className="block text-gray-700">Account</label>
-                    <input name="taiKhoan" onChange={formik.handleChange} placeholder="Enter Account" className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autoComplete required />
+                    <input name="taiKhoan" onChange={formik.handleChange} placeholder="Enter Account" className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autoFocus autoComplete = "true" required />
                     <p className="text-red-700">{formik.errors.taiKhoan}</p>
                 </div>
 
                 <div>
                     <label className="block text-gray-700">Email</label>
-                    <input name="email" onChange={formik.handleChange} placeholder="Enter Email" className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autoComplete required />
+                    <input name="email" onChange={formik.handleChange} placeholder="Enter Email" className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autoFocus autoComplete = "true" required />
                     <p className="text-red-700">{formik.errors.email}</p>
                 </div>
                 <div>
                     <label className="block text-gray-700">Full name</label>
-                    <input name="hoTen" onChange={formik.handleChange} placeholder="Enter full name" className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autofocus autoComplete required />
+                    <input name="hoTen" onChange={formik.handleChange} placeholder="Enter full name" className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" autoFocus autoComplete = "true" required />
                     <p className="text-red-700">{formik.errors.hoTen}</p>
                 </div>
                 <div className="mt-4">
