@@ -8,7 +8,10 @@ import moment from 'moment'
 import hoverFilm from '../../components/Film/Film.module.css'
 import Avatar from 'antd/lib/avatar/avatar';
 import { NavLink } from 'react-router-dom';
-
+import { USER_LOGIN } from '../../util/config';
+import { history } from '../../App';
+import { Modal, Button, Space } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 const { TabPane } = Tabs;
 export default function Detail(props) {
 
@@ -26,6 +29,20 @@ export default function Detail(props) {
             arrStar.push(<i key={i} className="fa fa-star"></i>)
         }
         return arrStar;
+    }
+    const { confirm } = Modal;
+    const showConfirm = () => {
+        confirm({
+            title: 'Bạn chưa đăng nhập!!',
+            icon: <ExclamationCircleOutlined />,
+            content: 'Đăng nhập để tiếp tục!',
+            onOk() {
+                history.push('/login')
+            },
+            onCancel() {
+                console.log('Cancel');
+            },
+        });
     }
     const renderCumRapChieu = () => {
         return thongTinPhimDetail.heThongRapChieu?.map((item, index) => {
@@ -50,10 +67,11 @@ export default function Detail(props) {
                                         <h6 className="font-semibold mb-0">{thongTinPhimDetail.tenPhim}</h6>
                                         <div className="grid grid-cols-4 gap-4">
                                             {cumRap.lichChieuPhim?.slice(0, 8).map((item, index) => {
-                                                
-                                                return <NavLink key={index} className="border-2 rounded-lg border-yellow-400 p-1 hover:bg-red-700" to={`/checkout/${item.maLichChieu}`}>
-                                                    {moment(item.ngayChieuGioChieu).format('hh:mm A')}
-                                                </NavLink>
+
+                                                return localStorage.getItem(USER_LOGIN) ?
+                                                    <NavLink key={index} className="border-2 rounded-lg border-yellow-400 p-1 hover:bg-red-700" to={`/checkout/${item.maLichChieu}`}>
+                                                        {moment(item.ngayChieuGioChieu).format('hh:mm A')}
+                                                    </NavLink> : <button className="border-2 rounded-lg border-yellow-400 p-1 hover:bg-red-700" onClick={showConfirm}> {moment(item.ngayChieuGioChieu).format('hh:mm A')}</button>
                                             })}
                                         </div>
                                     </div>
@@ -77,7 +95,7 @@ export default function Detail(props) {
                     borderRadius={0} // default border radius value is 10px
                 >
                     <div className="col-start-3 col-span-2 flex flex-wrap content-center">
-                        <div className={hoverFilm.parent} style={{ position: 'relative', cursor: 'pointer' }}>
+                        <a href={thongTinPhimDetail.trailer} target="_blank"><div className={hoverFilm.parent} style={{ position: 'relative', cursor: 'pointer' }}>
                             <div style={{ backgroundImage: `url(${thongTinPhimDetail?.hinhAnh}),url(https://picsum.photos/2401)`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
                                 <img className="w-full opacity-0" style={{ height: '350px' }} src={thongTinPhimDetail?.hinhAnh} />
                             </div>
@@ -85,7 +103,7 @@ export default function Detail(props) {
                                 <i className="fa fa-play-circle text-white text-4xl"></i>
                             </div>
                             <div className={hoverFilm.blackHover}></div>
-                        </div>
+                        </div></a>
 
                     </div>
                     <div className="col-span-3 flex flex-wrap content-center">

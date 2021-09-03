@@ -3,11 +3,12 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import hoverFilm from './Film.module.css'
 export default function Film(props) {
-    const { tenPhim, hinhAnh, moTa,maPhim } = props.dataFilm
+    // console.log(props)
+    const { tenPhim, hinhAnh, moTa, maPhim,trailer } = props.dataFilm
     return (
         <div>
             <div className="h-full rounded-lg shadow-xl m-2 relative">
-                <div className={hoverFilm.parent} style={{ position: 'relative', cursor: 'pointer' }}>
+                <a href={trailer} target="_blank" ><div className={hoverFilm.parent} style={{ position: 'relative', cursor: 'pointer' }}>
                     <div style={{ backgroundImage: `url(${hinhAnh}),url(https://picsum.photos/2401)`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
                         <img className="w-full opacity-0" style={{ height: '280px' }} src={hinhAnh} />
                     </div>
@@ -16,7 +17,7 @@ export default function Film(props) {
                     </div>
                     <div className={hoverFilm.blackHover}></div>
                 </div>
-
+                </a>
                 <div className="w-full p-2 h-28  relative bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
                     <p className="font-bold text-base mb-0">{tenPhim}</p>
                     <p className="mb-0">{moTa.length + tenPhim.length > 100 ? <span>{moTa.slice(0, 30)}...</span> : <span>{moTa.slice(0, 60)}</span>}</p>

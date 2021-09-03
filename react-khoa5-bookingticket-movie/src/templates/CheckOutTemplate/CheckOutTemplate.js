@@ -1,22 +1,19 @@
 import { Fragment, useEffect } from "react";
-import { Redirect, Route } from "react-router-dom";
-import { USER_LOGIN } from "../../util/config";
+import { Route } from "react-router-dom";
 
 
-
-export const CheckOutTemplate = (props) =>{
-
+export const CheckOutTemplate = (props) => {
     useEffect(() => {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     })
-    const {Component, ...restProps} = props;
+    const { Component, ...restProps } = props;
 
-    if(!localStorage.getItem(USER_LOGIN)){
-        return <Redirect  to='/login' />
-    }
-    
+  
 
-    return <Route {...restProps} render={(propsRoute) =>{
+ 
+
+
+    return <Route {...restProps} render={(propsRoute) => {
         return <Fragment>
 
             <Component {...propsRoute} />

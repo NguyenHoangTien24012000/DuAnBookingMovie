@@ -3,7 +3,7 @@ import { Button } from 'antd'
 import React, { Fragment, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { datVeAction, layChitietPhongVeAction } from '../../redux/actions/QuanLyDatVeAction'
-import { CHUYEN_TAB_CHECKOUT, CHUYEN_TAB_KET_QUA, DAT_VE } from '../../redux/types/QuanLyDatVeTypes'
+import { CHUYEN_TAB_CHECKOUT, CHUYEN_TAB_KET_QUA, DAT_VE, RESET_DAT_VE } from '../../redux/types/QuanLyDatVeTypes'
 import cssTrapezoid from './CheckOut.module.css'
 import './StyleGhe.css'
 import _ from 'lodash'
@@ -31,6 +31,9 @@ function CheckOut(props) {
         // connection.on("loadDanhSachGheDaDat",(dsGheKhachDat) =>{
         //     console.log('DanhsachGheKhachDat', dsGheKhachDat)
         // })
+        dispatch({
+            type : RESET_DAT_VE
+        })
 
     }, [])
     const renderDanhSachGhe = () => {
@@ -240,7 +243,6 @@ function KetQuaDatVe(props) {
                                 <p className="">Hệ thống rạp chiếu: {item.danhSachGhe[0]?.tenHeThongRap}</p>
                                 <p className="">Rạp chiếu: {item.danhSachGhe[0]?.tenCumRap}</p>
                                 <p className="">Mã vé: {item.maVe}</p>
-                                <p>Ngày giờ chiếu {chiTietPhongVe?.thongTinPhim.gioChieu}-{chiTietPhongVe?.thongTinPhim.ngayChieu}</p>
                                 <span>Số ghế ngồi: </span>
                                 {item.danhSachGhe?.map((item, index) => {
                                     return <span className="text-sm m-1 border-blue-800 border-2 rounded-xl" key={index}>{item.tenGhe}</span>

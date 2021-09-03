@@ -130,3 +130,16 @@ export const layDanhSachLoaiNguoiDungAction = () =>{
         }
     }
 }
+export const capNhatThongTinProfileAction = (profile) =>{
+    return async dispatch =>{
+        try {
+            const result = await quanLyNguoiDung.capNhatThongTinProfile(profile)
+            if(result.data.statusCode === 200){
+                alert("Cập nhật thành công!")
+                dispatch(thongTinTaiKhoanAction())
+            }
+        } catch (error) {
+            console.log("error",error)
+        }
+    }
+}

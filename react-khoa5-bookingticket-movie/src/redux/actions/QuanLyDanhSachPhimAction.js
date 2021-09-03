@@ -1,11 +1,16 @@
 import Axios from "axios"
 import { history } from "../../App";
 import { quanLyPhimServices } from "../../services/QuanLyPhimServices"
+import { CLOSE_LOADING, OPEN_LOADING } from "../types/LoadingTypes";
 import { GET_DANH_SACH_PHIM, SET_THONG_TIN_PHIM } from "../types/QuanLyDanhSachPhimType";
 
 export const getSanhSachPhimAction = (tenPhim = '') =>{
     return async (dispatch) =>{
+        dispatch({
+            type : OPEN_LOADING
+        })
         try {
+         
             const result = await quanLyPhimServices.layDanhSachPhim(tenPhim);
             if(result.data.statusCode === 200) {
                 dispatch({
@@ -16,6 +21,13 @@ export const getSanhSachPhimAction = (tenPhim = '') =>{
         } catch (error) {
             console.log("error",error)
         }
+        
+        setTimeout(() =>{
+            dispatch({
+                type : CLOSE_LOADING
+            })
+        },500)
+      
     }
 }
 

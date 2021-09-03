@@ -2,6 +2,7 @@ import React from 'react'
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { dangNhapAction } from '../../redux/actions/QuanLyNguoiDungAction';
+import { NavLink } from 'react-router-dom';
 export default function Login(props) {
 
     const dispatch = useDispatch()
@@ -47,8 +48,11 @@ export default function Login(props) {
         px-4 py-3 mt-6">Log In</button>
             </form>
 
-            <p className="mt-8">Need an account? <a href="#" className="text-blue-500 hover:text-blue-700 font-semibold">Create an
-                account</a></p>
+            <p className="mt-8">Need an account? 
+                <NavLink to="/register" className="text-blue-500 hover:text-blue-700 font-semibold" >Create an
+                account</NavLink>
+                </p>
+
         </div>
     )
 }

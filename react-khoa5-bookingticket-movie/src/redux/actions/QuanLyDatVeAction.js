@@ -9,6 +9,9 @@ import { THONG_TIN_NGUOI_DUNG_DAT_VE } from "../types/QuanLyNguoiDungTypes"
 
 export const layChitietPhongVeAction = (maLichChieu) =>{
     return async (dispatch) =>{
+        dispatch({
+            type :OPEN_LOADING
+        })
         try {
             const result =await quanLyDatVeServices.layChiTietPhongVe(maLichChieu)
             // console.log("result",result)
@@ -21,6 +24,11 @@ export const layChitietPhongVeAction = (maLichChieu) =>{
         } catch (error) {
             console.log("error",error)
         }
+        setTimeout(() =>{
+            dispatch({
+                type :CLOSE_LOADING
+            })
+        },500)
     }
 }
 

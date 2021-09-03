@@ -1,7 +1,7 @@
 import { Button, Table } from 'antd'
 import Search from 'antd/lib/input/Search'
 import { values } from 'lodash'
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Fragment } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
@@ -63,17 +63,28 @@ export default function AdminUsers() {
     }
 
   ];
-
+  const searchRef  = useRef(null)
   const handleChangeSearch = (e) =>{
-    console.log(e.target.value)
-    dispatch(layDanhSachNguoiDungAction(e.target.value))
+    // console.log(e.target.value)
+    if(searchRef.current){
+      clearTimeout(searchRef.current)
+    }
+
+    searchRef.current = setTimeout(()=>{
+      dispatch(layDanhSachNguoiDungAction(e.target.value))
+    },400)
   }
   return (
     <div>
       <p className="font-bold text-xl">Danh sách người dùng</p>
-      <Button type="primary" className="mb-2" onClick={() => {
+     <div className="flex justify-between">
+     <Button type="primary" className="mb-2" onClick={() => {
         history.push('/admin/addnewuser')
       }}>Thêm người dùng</Button>
+       <Button type="primary" className="mb-2" onClick={() => {
+        history.push('/home')
+      }}>Back Home</Button>
+     </div>
       <br></br>
       <Search placeholder="Tìm kiếm phim " enterButton onChange={handleChangeSearch} className="mb-3 " style={{ width: "50%" }} />
       <Table columns={columns} dataSource={danhSachNguoiDung} rowKey={"taiKhoan"}/>

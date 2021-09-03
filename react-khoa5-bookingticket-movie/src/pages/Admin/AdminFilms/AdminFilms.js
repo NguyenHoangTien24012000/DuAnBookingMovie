@@ -108,9 +108,14 @@ export default function AdminFilms() {
     return (
         <div>
             <p className="font-bold text-xl">Danh Sách Phim</p>
-            <Button type="primary" className="mb-2" onClick={() => {
+           <div className="flex justify-between">
+           <Button type="primary" className="mb-2" onClick={() => {
                 history.push('/admin/addnewfilm')
             }}>Thêm Phim</Button>
+               <Button type="primary" className="mb-2" onClick={() => {
+                history.push('/home')
+            }}>Back Home</Button>
+           </div>
             <br></br>
             <Search  placeholder="Tìm kiếm phim " onChange={handleChange} onSearch={onSearch} enterButton className="mb-3 " style={{width : "50%"}} />
             <Table columns={columns} dataSource={data} rowKey={"maPhim"} />

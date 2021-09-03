@@ -44,14 +44,15 @@ export default function Header(props) {
                 </NavLink>
                 <ul className="items-stretch hidden space-x-3 lg:flex">
                     <li className="flex">
-                        <NavLink to="/home" activeClassName="border-b-2 border-white" className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-violet-600 border-violet-600">Home</NavLink>
+                        <NavLink to="/home" activeClassName="border-b-2 border-white text-white" className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-violet-600 border-violet-600">Home</NavLink>
                     </li>
                     <li className="flex">
-                        <NavLink to="/contact" activeClassName="border-b-2 border-white" className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent">Contact</NavLink>
+                        <NavLink to="/admin/films" activeClassName="border-b-2 border-white text-white" className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent">Admin</NavLink>
                     </li>
                     <li className="flex">
-                        <NavLink to="/news" activeClassName="border-b-2 border-white" className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent">News</NavLink>
+                        <NavLink to="/contact" activeClassName="border-b-2 border-white text-white" className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent">Contact</NavLink>
                     </li>
+                  
 
                 </ul>
                 <div className="items-center flex-shrink-0 hidden lg:flex">

@@ -34,6 +34,9 @@ class QuanLyNguoiDung extends baseServices{
     layDanhSachLoaiNguoiDung = () =>{
         return this.get(`/QuanLyNguoiDung/LayDanhSachLoaiNguoiDung`)
     }
+    capNhatThongTinProfile = (profile) =>{
+        return this.put(`/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,profile)
+    }
 }
 
 

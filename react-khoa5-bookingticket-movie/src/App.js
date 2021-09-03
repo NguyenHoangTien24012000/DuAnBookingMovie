@@ -24,6 +24,8 @@ import AdminShowtimesFilm from './pages/Admin/AdminFilms/AdminShowtimesFilm';
 import AdminUsers from './pages/Admin/AdminUsers/AdminUsers';
 import AdminNewUser from './pages/Admin/AdminUsers/AdminNewUser';
 import EditUser from './pages/Admin/AdminUsers/EditUser';
+import PageNotFound from './pages/PageNotFound/PageNotFound';
+
 
 export const history = createBrowserHistory();
 
@@ -31,6 +33,7 @@ function App() {
   return (
     <Router history={history}>
         <Loading />
+       
       <Switch>
         <HomeTemplate exact path="/home"  Component = {Home} />
         <HomeTemplate exact path="/contact" Component={Contact} />
@@ -39,7 +42,7 @@ function App() {
         <UserTemplate exact path="/register" Component={Register} />
         <HomeTemplate exact path="/detail/:id" Component={Detail} />
         <CheckOutTemplate exact path="/checkout/:id" Component={CheckOut} />
-        <HomeTemplate exact path="/profile" Component = {Profile} />
+        <CheckOutTemplate exact path="/profile" Component = {Profile} />
         <AdminTemplate exact path="/admin/films" Component ={AdminFilms} />
         <AdminTemplate exact path="/admin/addnewfilm" Component={AddNewFilm} />
         <AdminTemplate exact path="/admin/editfilm/:id" Component={EditFilm} />
@@ -47,6 +50,8 @@ function App() {
         <AdminTemplate exact path ="/admin/users" Component={AdminUsers} />
         <AdminTemplate exact path ="/admin/addnewuser" Component={AdminNewUser} />
         <AdminTemplate exact path ="/admin/editUser/:taiKhoan" Component={EditUser} />
+        <HomeTemplate exact path="/"  Component = {Home} />
+        <HomeTemplate path="*" Component={PageNotFound} />
       </Switch>
     </Router>
   );
